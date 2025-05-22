@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Cantilan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background: linear-gradient(135deg, #1f2937, #4b5563);
+    color: #e0e7ff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  /* Login Section */
+  .login-container {
+    position: relative;
+    max-width: 360px;
+    width: 100%;
+    padding: 30px 35px;
+    background: rgba(31, 41, 55, 0.85);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    backdrop-filter: blur(12px);
+    animation: fadeSlideIn 1.8s ease forwards;
+  }
+
+  .login-container::before {
+    content: "";
+    position: absolute;
+    top: -40%;
+    left: -40%;
+    width: 180%;
+    height: 180%;
+    background: radial-gradient(circle at center, #3b82f6 0%, transparent 70%);
+    opacity: 0.12;
+    animation: slowRotate 20s linear infinite;
+    z-index: -1;
+    border-radius: 50%;
+  }
+
+  .login-container img {
+    width: 80px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 3px #2563eb);
+    transition: filter 0.4s ease;
+  }
+
+  .login-container img:hover {
+    filter: drop-shadow(0 0 7px #60a5fa);
+  }
+
+  .login-container input,
+  .login-container button {
+    width: 80%;
+    padding: 12px 18px;
+    margin-bottom: 16px;
+    border-radius: 24px;
+    border: none;
+    font-size: 15px;
+    font-weight: 500;
+    outline: none;
+    box-shadow: inset 0 0 8px rgba(255,255,255,0.1);
+  }
+
+  .login-container input {
+    background-color: #374151;
+    color: #d1d5db;
+  }
+
+  .login-container input::placeholder {
+    color: #9ca3af;
+    font-style: italic;
+  }
+
+  .login-container input:focus {
+    background-color: #2563eb;
+    color: #e0e7ff;
+    box-shadow: 0 0 12px #3b82f6;
+  }
+
+  .login-container button {
+    background-color: #2563eb;
+    color: rgb(212, 213, 233);
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px #1d4ed8;
+  }
+
+  .login-container button:hover {
+    background-color: #1e40af;
+    box-shadow: 0 6px 18px #1e40af;
+  }
+
+  /* Header and Navigation */
+  header {
+    background:gradient-linear(to right, #232fdb,#041344) ;
+    color: rgb(224, 243, 248);
+    text-align: center;
+    padding: 25px 10px;
+    animation: fadeIn 1.5s ease-in;
+  }
+
+  .menu-toggle {
+    display: none;
+    background-color: #2c218b;
+    color: rgb(36, 69, 85);
+    font-size: 24px;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+  }
+
+  nav {
+    background:url(laswitan4.jpg);
+    text-align: center;
+    padding: 12px;
+    animation: fadeIn 2s ease-in;
+  }
+
+  nav a {
+    color: #040f31;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+
+  nav a:hover {
+    color: #4d74c9;
+    text-decoration: underline;
+  }
+
+  /* Logout Button */
+  .logout-btn {
+    float: right;
+    margin: 10px;
+    background-color: #1e3de9;
+    color: rgb(35, 42, 58);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .logout-btn:hover {
+    background-color: #0c253a;
+  }
+
+  /* Sections */
+  section {
+    padding: 20px;
+    background-color: #0f283fd0;
+    margin: 10px;
+    border-radius: 8px;
+  }
+
+  footer {
+    background:url(con2.jpg);
+    color: rgb(36, 43, 63);
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+  }
+
+  img {
+    width: 10%;
+    max-width: 400px;
+    margin: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Animations */
+  @keyframes fadeSlideIn {
+    0% {opacity: 0; transform: translateY(40px);}
+    100% {opacity: 1; transform: translateY(0);}
+  }
+
+  @keyframes slowRotate {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    body {
+      flex-direction: column;
+    }
+
+    .menu-toggle {
+      display: block;
+    }
+
+    nav {
+      display: none;
+      flex-direction: column;
+    }
+
+    nav.show {
+      display: flex;
+    }
+
+    nav a {
+      margin: 10px 0;
+    }
+
+    .logout-btn {
+      float: none;
+      display: block;
+      margin: 10px auto;
+    }
+  }
+</style>
+
+</head>
+
+<body>
+
+  <!-- Login Section -->
+  <div id="loginSection" class="login-container">
+    <img src="cantilan.png" alt="Cantilan Logo">
+    <h2>Login to Cantilan</h2>
+    <input type="text" id="username" placeholder="Username" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button onclick="login()">Login</button>
+    <p id="errorMsg" style="color: red;"></p>
+  </div>
+
+  <!-- Main Website -->
+  <div id="cityWebsite" class="hidden">
+    <header>
+      <h1>Welcome to Cantilan</h1>
+      <p>Explore the beauty and culture of Cantilan, Surigao del Sur</p>
+    </header>
+
+    <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#beaches">Beaches</a>
+      <a href="#about">About</a>
+      <a href="#attractions">Attractions</a>
+      <a href="#contact">Contact</a>
+    </nav>
+     <button class="logout-btn" onclick="logout()">Logout</button>
+
+
+    <section id="home">
+      <h2>Home</h2>
+      <p>Cantilan is a peaceful coastal town in Surigao del Sur, known for its pristine beaches,
+         historical charm, and warm community. Whether you're here for adventure or relaxation, Cantilan welcomes you with open arms.</p>
+    </section>
+
+    <section id="beaches">
+      <h2>Beaches</h2>
+      <ul>
+        <li><strong>neture park</strong> - Nature's Park in Cantilan offers a serene escape surrounded by beautiful landscapes, ideal for outdoor activities and relaxation..</li>
+        <li><strong>Overview of Nature's Attractions</strong> - Cantilan, located in Surigao del Sur, Philippines, is home to several parks and nature attractions that showcase its stunning natural landscape and biodiversity. 
+          Although there isn't detailed information specifically labeled as "Nature's Park," there are various natural sites worth exploring.
+         Key Attractions</li> 
+         <a href="https://www.facebook.com/reel/561959632886465" 
+        target="_blank">Agila White Beach</a> 
+        <img src="IMG_0856.JPG" alt="Parang Beach">
+        <img src="IMG2_1218.JPG" alt="Parang Beach">
+        <img src="Shutterstock-Cagayan-National-Park-and-Seascape-Palaui-Island.webp" alt="Parang Beach">
+
+        <li><strong>Agila White Beach</strong> - Features fine white sand and tranquil waves, perfect for family trips.</li>
+        <li><strong>Overview of Agila White Beach </strong> - it a great destination for family gatherings or simple relaxation at the beach. 
+          If you're looking for more specific details or planning a trip, checking local listings or reaching out to the resort directly may provide further insights.</li>
+          <a href="https://www.facebook.com/watch/search/?q=%20Cons" 
+        target="_blank">Agila White Beach</a>
+        <img src="con.jpg" alt="Consuelo White Beach">
+        <img src="con1.jpg" alt="Consuelo White Beach">
+        <img src="con2.jpg" alt="Consuelo White Beach">
+        <img src="con3.jpg" alt="Consuelo White Beach">
+        <img src="con4.jpg" alt="Consuelo White Beach">
+        <img src="con5.jpg" alt="Consuelo White Beach">
+        <img src="con6.jpg" alt="Consuelo White Beach">
+
+        <li><strong>General Island</strong> - General Island is located in the municipality of Cantilan, in the province of Surigao del Sur, within the Mindanao region of the Philippines. Its geographical coordinates are approximately 9.4149° N latitude and 126.0033° E longitude.</li>
+         <li><strong>Overview of General Island</strong> - A scenic island ideal for snorkeling and relaxing.</li>
+         <a href="https://www.youtube.com/watch?v=-RrTNPIOeNI" 
+        target="_blank">Mayor of Cantilan</a>
+        <img src="gen.jpg" alt="General Island">
+        <img src="gen1.jpg" alt="General Island">
+        <img src="gen2.jpg" alt="General Island">
+        <img src="gen3.jpg" alt="General Island">
+        <img src="gen4.jpg" alt="General Island">
+        <img src="gen5.jpg" alt="General Island">
+      </ul>
+    </section>
+
+    <section id="about">
+      <h2>About Cantilan</h2>
+      <p>
+        Cantilan, founded in 1782, is one of the oldest municipalities in Surigao del Sur. 
+        It is often called the "Cradle of Towns" because many nearby municipalities originally formed as barrios of Cantilan. 
+        The town thrives with agricultural and fishing activities, and is rich in biodiversity, heritage, and natural resources.
+      </p>
+
+      <h3>Mayor of Cantilan</h3>
+      <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: 10px;">
+        <img src="OIP (1).jpg" alt="Mayor Carla Lopez-Pichay" style="max-width: 150px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.3);">
+        <p style="font-size: 16px;">
+          <strong>Hon. Carla Lopez-Pichay</strong><br>
+          Municipal Mayor of Cantilan<br>
+          A leader committed to progress, transparency, and uplifting the lives of Cantilangnons.
+        </p>
+        <a href="https://www.facebook.com/carlalopezpichay/videos/5006903259356767/" 
+        target="_blank">Mayor of Cantilan</a>
+      </div>
+
+      <h4 style="margin-top: 20px;">Programs and Accomplishments:</h4>
+      <ul style="line-height: 1.8;">
+        <li>Upgraded rural roads and infrastructure for easier transportation.</li>
+        <li>Improved healthcare access with regular medical missions and free checkups.</li>
+        <li>Promoted local tourism by enhancing beach and nature destinations.</li>
+        <li>Launched livelihood programs for women, farmers, and fisherfolk.</li>
+        <li>Provided scholarships and educational support to deserving students.</li>
+        <li>Strengthened disaster preparedness and emergency response systems.</li>
+      </ul>
+
+      <h4 style="margin-top: 20px;">Message from the Mayor</h4>
+      <blockquote style="background-color: #1622ca; padding: 15px; border-left: 5px solid #0099cc; font-style: italic; border-radius: 5px;">
+        "As your mayor, I am deeply honored to serve the people of Cantilan. Together, we will build a brighter, more inclusive future. 
+        With unity and dedication, we will continue to uplift every barangay and every family. Padayon Cantilan!"
+        <br><br>
+        – Hon. Carla Lopez-Pichay
+      </blockquote>
+    </section>
+
+    <section id="attractions">
+      <h2>Top Attractions</h2>
+      <ul>
+        <li><strong>Laswitan Falls and Lagoon</strong> - A natural rock basin near the ocean where waves crash over and form waterfalls.</li>
+        <li><strong>Overview of Laswitan Lagoon</strong> - The beauty of the place starts with the lagoon, a natural basin right beside the shore, separated from the ocean by amazing rock formations that enclose it. 
+            It’s like having a swimming pool in the ocean. And indeed, this area has become the main section where visitors take a dip to cool off.
+
+            Beautifully crafted by nature, the lagoon itself would have been enough reason for a visit. 
+            But what makes the place extra special is the way the powerful waves from the ocean pound on the rock formations. The waves from the ocean are so strong that they manage to climb over the 20-foot rock formations, 
+            descending on the side of the lagoon, creating a waterfalls effect.
+<a href="https://www.facebook.com/wheninsurigao/videos/2179843559030320" target="_blank">Laswitan Falls</a>
+</li>
+        <img src="laswitan.jpg" alt="Laswitan Falls">
+        <img src="laswitan 2.jpg" alt="Laswitan Falls">
+        <img src="laswitan3.webp" alt="Laswitan Lagoon">
+        <img src="laswitan4.jpg" alt="Laswitan Lagoon">
+        <img src="laswitan5.jpg" alt="Laswitan Lagoon">
+
+        <li><strong>Agsam lanuza kilometro 5</strong> -  Popular Attractions
+Besides KM5, visitors to the area often enjoy Lantaw Sa Agsam Campsite, which offers outdoor experiences with glamping cabins boasting views of the mountains and the shoreline 
+campsites.ph
+. This makes Agsam and its surroundings ideal for camping and nature activities.
+In summary, KM5 Agsam is easily accessible within the vibrant community of Lanuza, making it a noteworthy location for both residents and tourists..</li>
+        <li><strong>Agsam lanuza kilometro 5</strong> -  Popular Attractions
+      <a href="https://www.facebook.com/reel/3848070968749448" target="_blank">kilometro 5</a>  
+       <br></br>
+         <img src="lun1.jpg" alt="Hikdop Island">
+         <img src="lun2.jpg" alt="Hikdop Island">
+         <img src="lun3.jpg" alt="Hikdop Island">
+         <img src="lun4.jpg" alt="Hikdop Island">
+         <img src="lun5.jpg" alt="Hikdop Island">
+         <img src="lun6.jpg" alt="Hikdop Island">
+        
+        <li><strong>Tinuy-an Falls</strong> - A multi-tiered waterfall and one of the widest in the Philippines.</li>
+        <li><strong>Overview of Tinuy an Falls</strong> - Tinuy-an Falls is a magnificent natural attraction that offers breathtaking views and a serene environment. 
+            Its accessible location, coupled with various activities and the chance to experience the natural beauty of the Philippines, 
+            makes it a must-visit for tourists exploring Surigao del Sur. Whether swimming in its clear waters or enjoying a ride on a bamboo raft, 
+            the memories created at Tinuy-an Falls are sure to last a lifetime!</li>
+<a href="https://www.bing.com/videos/riverview/relatedvideo?&q=tinuy-an+falls%2c+philippines&&mid=9995417070499269278299954170704992692782&&mcid=301E347107E641BA9056393CA5057A9A&FORM=VRDGAR" target="_blank">Tinuy-an Falls</a>
+        <img src="tinuy an.jpg" alt="Tinuy-an Falls">
+        <img src="tinuy an 2.jpg" alt="Tinuy-an Falls">
+        <img src="tinuy an 3.jpg" alt="Tinuy-an Falls">
+
+        <li><strong>Hubason Adventure Trail </strong> -Hubason is a swimming area the size of 2 basketball courts along a clean river in Carmen. 
+          The swim area is generally free of big exposed rocks and ideal for dipping or even lapping. 
+          It is about 7 feet at its deepest, where a diving board is installed.</li>
+        <a href="https://www.bing.com/videos/riverview/relatedvideo?&q=Hubason+Adventure+Trail+vedio&&mid=38455EAE5D330E263ED938455EAE5D330E263ED9&&mcid=63E3946C00574AAF8A26BDBA5AA11987&FORM=VRDGAR" target="_blank">Adventure Trail</a>
+        <img src="hubason.jpg" alt="Pangdan Falls">
+        <img src="hubason1.jpg" alt="Pangdan Falls">
+        <img src="hubason2.jpg" alt="Pangdan Falls">
+        <img src="hubason3.jpg" alt="Pangdan Falls">
+        <img src="hubason4.jpg" alt="Pangdan Falls">
+        <img src="hubason5.jpg" alt="Pangdan Falls">
+
+        <li><strong>Malinawa Cool Spring</strong> -It is a naturally cold spring, and the area was enhanced and beautified by the local government. 
+          The spring was developed and turned into a resort for eco-tourism. It is popularly known as “Silop” by the locals.</li> 
+        <a href="https://www.facebook.com/share/v/17sdLeaS4Z/" target="_blank">Cool Spring</a>
+        <img src="linaw1.jpg" alt="Malinawa Cool Spring">
+        <img src="linaw2.jpg" alt="Malinawa Cool Spring">
+        <img src="linaw3.jpg" alt="Malinawa Cool Spring">
+        <img src="linaw4.jpg" alt="Malinawa Cool Spring">
+        <img src="linaw5.jpg" alt="Malinawa Cool Spring">
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p>For inquiries, you may reach the Cantilan Tourism Office at: <br>
+         <strong>Email:</strong> tourism@cantilan.gov.ph <br>
+         <strong>Phone:</strong> +63 123 456 7890
+      </p>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Municipality of Cantilan. All rights reserved.</p>
+    </footer>
+  </div>
+
+ <script>
+    // Check login status on page load
+    window.onload = function () {
+      const isLoggedIn = localStorage.getItem("isLoggedIn");
+      if (isLoggedIn === "true") {
+        document.getElementById("loginSection").classList.add("hidden");
+        document.getElementById("cityWebsite").classList.remove("hidden");
+      }
+    };
+
+    function login() {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const errorMsg = document.getElementById("errorMsg");
+
+      const validUsername = "admin";
+      const validPassword = "cantilan123";
+
+      if (username === validUsername && password === validPassword) {
+        localStorage.setItem("isLoggedIn", "true");
+        document.getElementById("loginSection").classList.add("hidden");
+        document.getElementById("cityWebsite").classList.remove("hidden");
+        errorMsg.textContent = "";
+      } else {
+        errorMsg.textContent = "Invalid username or password.";
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem("isLoggedIn");
+      document.getElementById("cityWebsite").classList.add("hidden");
+      document.getElementById("loginSection").classList.remove("hidden");
+    }
+
+    function toggleMenu() {
+      const nav = document.querySelector("nav");
+      nav.classList.toggle("show");
+    }
+  </script>
+
+</body>
+</html>
+
+
